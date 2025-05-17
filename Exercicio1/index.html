@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Cliques</title>
+</head>
+<body>
+    <button id="btnCurtir">Curtir</button>
+    <p>Curtidas: <span id="contador">0</span></p>
+
+    <script>
+        let curtidas = 0;
+        const botao = document.getElementById("btnCurtir");
+        const contador = document.getElementById("contador");
+    
+        botao.addEventListener("click", ()=> {
+            curtidas++;
+            contador.textContent = curtidas;
+        })
+    </script>
+</body>
+</html>
