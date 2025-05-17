@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Animes </title>
 </head>
+
 <body>
 
   <h1>Animes</h1>
-  
-  <ul id="listaFilmes"></ul>
-  
+
+  <ul id="listaAnimes"></ul>
+
   <h2>Animes Favoritos</h2>
   <ul id="listaFavoritos"></ul>
-  
+
   <script>
     let animes = [
       { id: 1, titulo: 'Pokemon', genero: 'animaçaão', favorito: false },
@@ -22,44 +24,44 @@
       { id: 4, titulo: 'one piece', genero: 'Animação', favorito: false },
       { id: 5, titulo: 'one punch man', genero: 'animação', favorito: false }
     ];
-    function marcarFavoritos(id, animes) {
-      return animes.map(fanime => {
+    function marcarFavoritos(id) {
+      animes.forEach(anime => {
         if (anime.id === id) {
-          return { ...filme, favorito: !filme.favorito }; 
-        }
-        return filme; 
-      });
-    }
-    function listarFavoritos(animes) {
-      return filmes.filter(filme => filme.favorito);
-    }
-    function exibirFilmes(animes) {
-      const listaFilmes = document.getElementById('listaFilmes');
-      listaFilmes.innerHTML = ''; 
+          anime.favorito = !anime.favorito
+        };
+      })
+    };
+
+    function exibirAnimes(animes) {
+      const listaFAnimes = document.getElementById('listaAnimes');
+      listaAnimes.innerHTML = '';
       animes.forEach(anime => {
         const li = document.createElement('li');
         li.innerHTML = `${anime.titulo} - <span class="${anime.favorito ? 'favorito' : ''}">${anime.favorito ? 'Favorito' : 'Não Favorito'}</span> 
-          <button onclick="marcarComoFavorito(${anime.id})">Marcar como Favorito</button>`;
-        listaFilmes.appendChild(li);
+          <button onclick="marcarComoFavorito(${anime.id})"> Favorito</button>`;
+        listaAnimes.appendChild(li);
       });
     }
-    function exibirFavoritos(anime) {
+    function exibirFavoritos(animes) {
       const listaFavoritos = document.getElementById('listaFavoritos');
-      listaFavoritos.innerHTML = ''; 
-      const favoritos = listarFavoritos(animes);
-      favoritos.forEach(anime => {
-        const li = document.createElement('li');
-        li.innerHTML = `${anime.titulo}`;
-        listaFavoritos.appendChild(li);
+      listaFavoritos.innerHTML = '';
+
+      animes.forEach(anime => {
+        if (anime.favorito) {
+          const li = document.createElement('li');
+          li.innerHTML = `${anime.titulo}`;
+          listaFavoritos.appendChild(li);
+        }
       });
     }
     function marcarComoFavorito(id) {
-      animes = marcarFavoritos(id, animes);
-      exibirFilmes(animes); 
-      exibirFavoritos(animes); 
+      marcarFavoritos(id);
+      exibirAnimes(animes);
+      exibirFavoritos(animes);
     }
-    exibirFilmes(animes);
+    exibirAnimes(animes);
     exibirFavoritos(animes);
-  </script> 
+  </script>
 </body>
+
 </html>
